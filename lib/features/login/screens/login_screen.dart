@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:quickbite_app/features/login/bloc/login_bloc.dart';
+import 'package:quickbite_app/features/login/widgets/app_logo.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,8 +18,10 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(35.0),
           child: Column(
+            spacing: 25,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              AppLogo(),
               Text(
                 'Quickbite',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -53,22 +57,56 @@ class LoginScreen extends StatelessWidget {
                             (value) => context.read<LoginBloc>().add(
                               LoginPasswordChanged(value),
                             ),
+                        obscureText: true,
                         controller: passwordController,
                         decoration: InputDecoration(label: Text('Contraseña')),
                       ),
-                      BlocBuilder<LoginBloc, LoginState>(
-                        builder: (context, state) {
-                          return ElevatedButton(
-                            onPressed:
-                                () => context.read<LoginBloc>().add(
-                                  LoginSubmitted(),
-                                ),
-                            child:
-                                state.isLoading
-                                    ? CircularProgressIndicator()
-                                    : Text('Iniciar sesión'),
-                          );
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: BlocBuilder<LoginBloc, LoginState>(
+                                builder: (context, state) {
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      shape: WidgetStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadiusGeometry.circular(10),
+                                        ),
+                                      ),
+                                      backgroundColor: WidgetStatePropertyAll(
+                                        HexColor('FF5722'),
+                                      ),
+                                    ),
+                                    onPressed:
+                                        () => context.read<LoginBloc>().add(
+                                          LoginSubmitted(),
+                                        ),
+                                    child:
+                                        state.isLoading
+                                            ? SizedBox(
+                                              height: 15,
+                                              width: 15,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                            : Text(
+                                              'Iniciar sesión',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
