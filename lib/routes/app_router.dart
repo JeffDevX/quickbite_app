@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:quickbite_app/features/home/bloc/food/food_bloc.dart';
 import 'package:quickbite_app/features/home/screens/home_screen.dart';
 import 'package:quickbite_app/features/login/bloc/login_bloc.dart';
 import 'package:quickbite_app/features/login/screens/login_screen.dart';
@@ -26,6 +27,13 @@ final appRouter = GoRouter(
             child: const RegisterScreen(),
           ),
     ),
-    GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+    GoRoute(
+      path: '/home',
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => FoodBloc()..add(FoodStarted()),
+            child: const HomeScreen(),
+          ),
+    ),
   ],
 );
