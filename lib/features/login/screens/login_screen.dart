@@ -27,23 +27,32 @@ class LoginScreen extends StatelessWidget {
                 child: BlocListener<LoginBloc, LoginState>(
                   listener: (context, state) {
                     //If login is successful, navigate to home
-                    if (state is LoginSuccess) {
+                    if (state.isSuccess) {
                       context.go('/home');
                     }
                     //If login fails, show error message
-                    if (state is LoginError) {
-                      ScaffoldMessenger.of(
-                        context,
-                      ).showSnackBar(SnackBar(content: Text(state.message)));
+                    if (state.errorMessage != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(state.errorMessage!)),
+                      );
                     }
                   },
                   child: Column(
                     children: [
                       TextFormField(
                         controller: emailController,
+                        onChanged: (value) {
+                          context.read<LoginBloc>().add(
+                            LoginEmailChanged(value),
+                          );
+                        },
                         decoration: InputDecoration(label: Text('Email')),
                       ),
                       TextFormField(
+                        onChanged:
+                            (value) => context.read<LoginBloc>().add(
+                              LoginPasswordChanged(value),
+                            ),
                         controller: passwordController,
                         decoration: InputDecoration(label: Text('Contraseña')),
                       ),
@@ -52,13 +61,10 @@ class LoginScreen extends StatelessWidget {
                           return ElevatedButton(
                             onPressed:
                                 () => context.read<LoginBloc>().add(
-                                  LoginSubmitted(
-                                    email: emailController.text,
-                                    password: passwordController.text,
-                                  ),
+                                  LoginSubmitted(),
                                 ),
                             child:
-                                state is LoginLoading
+                                state.isLoading
                                     ? CircularProgressIndicator()
                                     : Text('Iniciar sesión'),
                           );
