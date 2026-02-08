@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -5,37 +7,34 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(LoginInitial()) {
+  LoginBloc() : super(LoginState()) {
+    on<LoginEmailChanged>((event, emit) {
+      emit(state.copyWith(email: event.email, errorMessage: null));
+    });
+
+    on<LoginPasswordChanged>((event, emit) {
+      emit(state.copyWith(password: event.password, errorMessage: null));
+    });
+
     on<LoginSubmitted>(_onLoginSubmitted);
   }
+
   Future<void> _onLoginSubmitted(
     LoginSubmitted event,
     Emitter<LoginState> emit,
   ) async {
-    if (event.email.isEmpty || event.password.isEmpty) {
-      emit(
-        LoginError(
-          message: 'Por favor completa todos los campos',
-          password: event.password,
-          email: event.email,
-        ),
-      );
+    if (!state.isValid) {
+      emit(state.copyWith(errorMessage: 'Por favor completa todos los campos'));
       return;
     }
 
-    emit(LoginLoading(password: event.password, email: event.email));
+    emit(state.copyWith(isLoading: true));
 
     try {
       await Future.delayed(Duration(seconds: 2));
-      emit(LoginSuccess(password: event.password, email: event.email));
+      emit(state.copyWith(isLoading: false, isSuccess: true));
     } catch (_) {
-      emit(
-        LoginError(
-          message: 'Error al iniciar sesión',
-          password: event.password,
-          email: event.email,
-        ),
-      );
+      emit(state.copyWith(errorMessage: 'Error al iniar sesión'));
     }
   }
 }

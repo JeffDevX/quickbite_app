@@ -1,31 +1,35 @@
 part of 'login_bloc.dart';
 
-@immutable
-sealed class LoginState {
+class LoginState {
   final String password;
   final String email;
+  final bool isLoading;
+  final bool isSuccess;
+  final String? errorMessage;
 
-  const LoginState({required this.password, required this.email});
-}
-
-final class LoginInitial extends LoginState {
-  const LoginInitial() : super(password: '', email: '');
-}
-
-final class LoginLoading extends LoginState {
-  const LoginLoading({required super.password, required super.email});
-}
-
-final class LoginSuccess extends LoginState {
-  const LoginSuccess({required super.password, required super.email});
-}
-
-final class LoginError extends LoginState {
-  final String message;
-
-  const LoginError({
-    required this.message,
-    required super.password,
-    required super.email,
+  const LoginState({
+    this.email = '',
+    this.password = '',
+    this.isLoading = false,
+    this.isSuccess = false,
+    this.errorMessage,
   });
+
+  bool get isValid => email.isNotEmpty && password.isNotEmpty;
+
+  LoginState copyWith({
+    String? email,
+    String? password,
+    bool? isLoading,
+    bool? isSuccess,
+    String? errorMessage,
+  }) {
+    return LoginState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      isLoading: isLoading ?? this.isLoading,
+      isSuccess: isSuccess ?? this.isSuccess,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
+  }
 }

@@ -3,12 +3,20 @@ part of 'login_bloc.dart';
 @immutable
 sealed class LoginEvent {}
 
-final class LoginSubmitted extends LoginEvent {
+/// Cuando el usuario escribe en el email
+class LoginEmailChanged extends LoginEvent {
   final String email;
-  final String password;
-
-  LoginSubmitted({required this.email, required this.password});
+  LoginEmailChanged(this.email);
 }
+
+/// Cuando el usuario escribe en el password
+class LoginPasswordChanged extends LoginEvent {
+  final String password;
+  LoginPasswordChanged(this.password);
+}
+
+/// Cuando presiona el botón Login
+class LoginSubmitted extends LoginEvent {}
 
 final class GoogleLoginPressed extends LoginEvent {}
 
