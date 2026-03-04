@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quickbite_app/features/home/bloc/food/food_bloc.dart';
+import 'package:quickbite_app/features/home/bloc/product/product_bloc.dart';
+import 'package:quickbite_app/features/home/models/food_model.dart';
 import 'package:quickbite_app/features/home/widgets/food_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -33,14 +34,9 @@ class HomeScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SearchBar(
-                          leading: Icon(Icons.search),
-                          hintText: 'Busca tu plato favorito',
-                        ),
                       ],
                     ),
                   ),
-
                   IconButton(
                     onPressed: () {
                       context.go('/login');
@@ -49,21 +45,78 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Hamburguesas')),
-                  ElevatedButton(onPressed: () {}, child: Text('Pizzas')),
-                  ElevatedButton(onPressed: () {}, child: Text('Bebidas')),
-                ],
+              SizedBox(
+                height: 40,
+                child: SearchBar(
+                  elevation: WidgetStatePropertyAll(0),
+                  shape: WidgetStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                    ),
+                  ),
+                  leading: Icon(Icons.search),
+                  hintText: 'Busca tu plato favorito',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: BlocBuilder<ProductBloc, ProducState>(
+                    builder: (context, state) {
+                      Category categorySelected = Category.combos;
+                      if (state is ProductLoaded) {
+                        categorySelected = state.selectedCategory;
+                      }
+                      return Row(
+                        spacing: 10,
+                        children: [
+                          _categoryButton(
+                            context: context,
+                            category: Category.combos,
+                            isSelected:
+                                categorySelected == Category.combos
+                                    ? true
+                                    : false,
+                          ),
+                          _categoryButton(
+                            context: context,
+                            category: Category.hamburguesas,
+                            isSelected:
+                                categorySelected == Category.hamburguesas
+                                    ? true
+                                    : false,
+                          ),
+                          _categoryButton(
+                            context: context,
+                            category: Category.pizzas,
+                            isSelected:
+                                categorySelected == Category.pizzas
+                                    ? true
+                                    : false,
+                          ),
+                          _categoryButton(
+                            context: context,
+                            category: Category.bebidas,
+                            isSelected:
+                                categorySelected == Category.bebidas
+                                    ? true
+                                    : false,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
               ),
               Expanded(
-                child: BlocBuilder<FoodBloc, FoodState>(
+                child: BlocBuilder<ProductBloc, ProducState>(
                   builder: (context, state) {
-                    if (state is FoodLoading) {
+                    if (state is ProductLoading) {
                       return Center(child: CircularProgressIndicator());
-                    } else if (state is FoodLoaded) {
+                    } else if (state is ProductLoaded) {
                       return GridView.builder(
-                        itemCount: state.foods.length,
+                        itemCount: state.filteredProducts.length,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
                           childAspectRatio: 0.75,
@@ -71,15 +124,16 @@ class HomeScreen extends StatelessWidget {
                           mainAxisSpacing: 10,
                         ),
                         itemBuilder: (context, index) {
-                          final item = state.foods[index];
+                          final food = state.filteredProducts[index];
+                          //final item = state.foods[index];
                           return FoodWidget(
-                            foodImage: item.image,
-                            foodName: item.name,
-                            foodPrice: item.price,
+                            foodImage: food.pictureUrl,
+                            foodName: food.name,
+                            foodPrice: food.price,
                           );
                         },
                       );
-                    } else if (state is FoodError) {
+                    } else if (state is ProductError) {
                       return Center(child: Text(state.errorMessage));
                     }
 
@@ -90,6 +144,34 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _categoryButton extends StatelessWidget {
+  final BuildContext context;
+  final bool isSelected;
+  final Category category;
+  const _categoryButton({
+    required this.isSelected,
+    required this.context,
+    required this.category,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed:
+          () => context.read<ProductBloc>().add(ChangeCategory(category)),
+      style: ButtonStyle(
+        backgroundColor: WidgetStatePropertyAll(
+          isSelected ? Colors.deepOrange : null,
+        ),
+      ),
+      child: Text(
+        category.name,
+        style: TextStyle(color: isSelected ? Colors.white : null),
       ),
     );
   }
