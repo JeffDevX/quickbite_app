@@ -1,0 +1,202 @@
+[
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Classic Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../classic_burger.png",
+    "price": 6.50,
+    "stock": 85
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Double Cheese Bacon",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../double_cheese_bacon.png",
+    "price": 9.75,
+    "stock": 40
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Bacon Cheese Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../bacon_cheese.png",
+    "price": 8.25,
+    "stock": 55
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Double Classic Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../double_classic.png",
+    "price": 9.50,
+    "stock": 30
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Guacamole Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../guacamole_burger.png",
+    "price": 8.99,
+    "stock": 25
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Texan Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../texan_burger.png",
+    "price": 7.50,
+    "stock": 60
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Pork Onion Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../pork_onion.png",
+    "price": 9.25,
+    "stock": 20
+  },
+  {
+    "available": true,
+    "category": "Hamburguesas",
+    "name": "Bbq Bacon Burger",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../bbq_bacon.png",
+    "price": 8.75,
+    "stock": 45
+  },
+  {
+    "available": true,
+    "category": "Combos",
+    "type": "combo",
+    "name": "Classic Combo",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../classic_combo.png",
+    "price": 13.99,
+    "stock": 50,
+    "items": [
+      { "productName": "Classic Burger", "quantity": 1 },
+      { "productName": "Bebida Regular", "quantity": 1 },
+      { "productName": "Papas Medianas", "quantity": 1 }
+    ]
+  },
+  {
+    "available": true,
+    "category": "Combos",
+    "type": "combo",
+    "name": "Double Cheese Combo",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../double_cheese_combo.png",
+    "price": 18.99,
+    "stock": 40,
+    "items": [
+      { "productName": "Double Cheese Bacon", "quantity": 1 },
+      { "productName": "Bebida Grande", "quantity": 1 },
+      { "productName": "Papas Grandes", "quantity": 1 }
+    ]
+  },
+  {
+    "available": true,
+    "category": "Combos",
+    "type": "combo",
+    "name": "Texan Special Combo",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../texan_combo.png",
+    "price": 15.99,
+    "stock": 30,
+    "items": [
+      { "productName": "Texan Burger", "quantity": 1 },
+      { "productName": "Bebida Regular", "quantity": 1 },
+      { "productName": "Papas Medianas", "quantity": 1 }
+    ]
+  },
+  {
+    "available": true,
+    "category": "Combos",
+    "type": "combo",
+    "name": "Pork Onion Deluxe Combo",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../pork_onion_combo.png",
+    "price": 19.99,
+    "stock": 20,
+    "items": [
+      { "productName": "Pork Onion Burger", "quantity": 1 },
+      { "productName": "Bebida Grande", "quantity": 1 },
+      { "productName": "Papas Grandes", "quantity": 1 }
+    ]
+  },
+  {
+    "available": true,
+    "category": "Bebidas",
+    "name": "Coca Cola Regular",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../cocacola_regular.png",
+    "price": 2.50,
+    "stock": 150
+  },
+  {
+    "available": true,
+    "category": "Bebidas",
+    "name": "Coca Cola Grande",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../cocacola_grande.png",
+    "price": 3.50,
+    "stock": 120
+  },
+  {
+    "available": true,
+    "category": "Bebidas",
+    "name": "Sprite Regular",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../sprite_regular.png",
+    "price": 2.50,
+    "stock": 100
+  },
+  {
+    "available": true,
+    "category": "Bebidas",
+    "name": "Fanta Regular",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../fanta_regular.png",
+    "price": 2.50,
+    "stock": 90
+  },
+  {
+    "available": true,
+    "category": "Bebidas",
+    "name": "Agua Mineral",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../agua.png",
+    "price": 1.75,
+    "stock": 200
+  },
+  {
+    "available": true,
+    "category": "Pizzas",
+    "name": "Pizza Pepperoni",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../pepperoni.png",
+    "price": 18.99,
+    "stock": 40
+  },
+  {
+    "available": true,
+    "category": "Pizzas",
+    "name": "Pizza Hawaiana",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../hawaiana.png",
+    "price": 19.50,
+    "stock": 35
+  },
+  {
+    "available": true,
+    "category": "Pizzas",
+    "name": "Pizza BBQ Chicken",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../bbq_chicken.png",
+    "price": 21.00,
+    "stock": 25
+  },
+  {
+    "available": true,
+    "category": "Pizzas",
+    "name": "Pizza Cuatro Quesos",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../cuatro_quesos.png",
+    "price": 20.75,
+    "stock": 30
+  },
+  {
+    "available": true,
+    "category": "Pizzas",
+    "name": "Pizza Suprema",
+    "pictureUrl": "https://firebasestorage.googleapis.com/.../suprema.png",
+    "price": 22.50,
+    "stock": 20
+  }
+]
