@@ -5,7 +5,8 @@
     "name": "Classic Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../classic_burger.png",
     "price": 6.50,
-    "stock": 85
+    "stock": 85,
+    "description": "Hamburguesa clásica con carne jugosa, lechuga fresca, tomate y salsa especial."
   },
   {
     "available": true,
@@ -13,7 +14,8 @@
     "name": "Double Cheese Bacon",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../double_cheese_bacon.png",
     "price": 9.75,
-    "stock": 40
+    "stock": 40,
+    "description": "Doble carne con queso derretido y crujiente tocino, una combinación irresistible."
   },
   {
     "available": true,
@@ -21,7 +23,8 @@
     "name": "Bacon Cheese Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../bacon_cheese.png",
     "price": 8.25,
-    "stock": 55
+    "stock": 55,
+    "description": "Hamburguesa con queso y tocino crujiente, acompañada de ingredientes frescos."
   },
   {
     "available": true,
@@ -29,7 +32,8 @@
     "name": "Double Classic Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../double_classic.png",
     "price": 9.50,
-    "stock": 30
+    "stock": 30,
+    "description": "Versión doble de la hamburguesa clásica, con más carne y más sabor."
   },
   {
     "available": true,
@@ -37,7 +41,8 @@
     "name": "Guacamole Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../guacamole_burger.png",
     "price": 8.99,
-    "stock": 25
+    "stock": 25,
+    "description": "Hamburguesa con guacamole cremoso que aporta frescura y un toque especial."
   },
   {
     "available": true,
@@ -45,7 +50,8 @@
     "name": "Texan Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../texan_burger.png",
     "price": 7.50,
-    "stock": 60
+    "stock": 60,
+    "description": "Hamburguesa estilo texano con salsa BBQ y sabor ahumado característico."
   },
   {
     "available": true,
@@ -53,7 +59,8 @@
     "name": "Pork Onion Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../pork_onion.png",
     "price": 9.25,
-    "stock": 20
+    "stock": 20,
+    "description": "Hamburguesa de cerdo con cebollas caramelizadas y sabor intenso."
   },
   {
     "available": true,
@@ -61,7 +68,8 @@
     "name": "Bbq Bacon Burger",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../bbq_bacon.png",
     "price": 8.75,
-    "stock": 45
+    "stock": 45,
+    "description": "Hamburguesa con tocino y salsa BBQ, perfecta para amantes del sabor ahumado."
   },
   {
     "available": true,
@@ -71,6 +79,7 @@
     "pictureUrl": "https://firebasestorage.googleapis.com/.../classic_combo.png",
     "price": 13.99,
     "stock": 50,
+    "description": "Combo clásico que incluye hamburguesa, papas medianas y bebida regular.",
     "items": [
       { "productName": "Classic Burger", "quantity": 1 },
       { "productName": "Bebida Regular", "quantity": 1 },
@@ -85,6 +94,7 @@
     "pictureUrl": "https://firebasestorage.googleapis.com/.../double_cheese_combo.png",
     "price": 18.99,
     "stock": 40,
+    "description": "Combo con doble hamburguesa de queso y bacon, papas grandes y bebida grande.",
     "items": [
       { "productName": "Double Cheese Bacon", "quantity": 1 },
       { "productName": "Bebida Grande", "quantity": 1 },
@@ -99,6 +109,7 @@
     "pictureUrl": "https://firebasestorage.googleapis.com/.../texan_combo.png",
     "price": 15.99,
     "stock": 30,
+    "description": "Combo texano con hamburguesa BBQ, papas medianas y bebida regular.",
     "items": [
       { "productName": "Texan Burger", "quantity": 1 },
       { "productName": "Bebida Regular", "quantity": 1 },
@@ -113,6 +124,7 @@
     "pictureUrl": "https://firebasestorage.googleapis.com/.../pork_onion_combo.png",
     "price": 19.99,
     "stock": 20,
+    "description": "Combo deluxe con hamburguesa de cerdo, papas grandes y bebida grande.",
     "items": [
       { "productName": "Pork Onion Burger", "quantity": 1 },
       { "productName": "Bebida Grande", "quantity": 1 },
@@ -125,7 +137,8 @@
     "name": "Coca Cola Regular",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../cocacola_regular.png",
     "price": 2.50,
-    "stock": 150
+    "stock": 150,
+    "description": "Refresco Coca Cola en tamaño regular, refrescante y burbujeante."
   },
   {
     "available": true,
@@ -133,7 +146,8 @@
     "name": "Coca Cola Grande",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../cocacola_grande.png",
     "price": 3.50,
-    "stock": 120
+    "stock": 120,
+    "description": "Coca Cola en presentación grande, ideal para acompañar tus comidas."
   },
   {
     "available": true,
@@ -141,7 +155,8 @@
     "name": "Sprite Regular",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../sprite_regular.png",
     "price": 2.50,
-    "stock": 100
+    "stock": 100,
+    "description": "Bebida refrescante con sabor a limón y burbujas ligeras."
   },
   {
     "available": true,
@@ -149,7 +164,8 @@
     "name": "Fanta Regular",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../fanta_regular.png",
     "price": 2.50,
-    "stock": 90
+    "stock": 90,
+    "description": "Refresco sabor naranja, dulce y refrescante."
   },
   {
     "available": true,
@@ -157,7 +173,8 @@
     "name": "Agua Mineral",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../agua.png",
     "price": 1.75,
-    "stock": 200
+    "stock": 200,
+    "description": "Agua mineral pura y refrescante para mantenerte hidratado."
   },
   {
     "available": true,
@@ -165,7 +182,8 @@
     "name": "Pizza Pepperoni",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../pepperoni.png",
     "price": 18.99,
-    "stock": 40
+    "stock": 40,
+    "description": "Pizza clásica con abundante pepperoni y queso derretido."
   },
   {
     "available": true,
@@ -173,7 +191,8 @@
     "name": "Pizza Hawaiana",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../hawaiana.png",
     "price": 19.50,
-    "stock": 35
+    "stock": 35,
+    "description": "Pizza con jamón y piña, mezcla perfecta entre dulce y salado."
   },
   {
     "available": true,
@@ -181,7 +200,8 @@
     "name": "Pizza BBQ Chicken",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../bbq_chicken.png",
     "price": 21.00,
-    "stock": 25
+    "stock": 25,
+    "description": "Pizza con pollo en salsa BBQ, con sabor ahumado y delicioso."
   },
   {
     "available": true,
@@ -189,7 +209,8 @@
     "name": "Pizza Cuatro Quesos",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../cuatro_quesos.png",
     "price": 20.75,
-    "stock": 30
+    "stock": 30,
+    "description": "Pizza con mezcla de cuatro quesos, cremosa y llena de sabor."
   },
   {
     "available": true,
@@ -197,6 +218,7 @@
     "name": "Pizza Suprema",
     "pictureUrl": "https://firebasestorage.googleapis.com/.../suprema.png",
     "price": 22.50,
-    "stock": 20
+    "stock": 20,
+    "description": "Pizza completa con carnes y vegetales, ideal para los que quieren de todo."
   }
 ]

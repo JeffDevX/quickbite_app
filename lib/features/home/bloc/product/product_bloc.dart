@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:quickbite_app/features/home/models/food_model.dart';
+import 'package:quickbite_app/features/home/models/food.dart';
 import 'package:quickbite_app/features/home/repository/products_repository.dart';
 
 part 'product_event.dart';
@@ -18,7 +18,7 @@ class ProductBloc extends Bloc<ProductEvent, ProducState> {
     on<LoadProducts>((event, emit) async {
       emit(ProductLoading());
 
-      await emit.forEach<List<FoodModel>>(
+      await emit.forEach<List<Food>>(
         repository.getProducts(),
         onData: (products) {
           final selectedCategory =
@@ -35,8 +35,27 @@ class ProductBloc extends Bloc<ProductEvent, ProducState> {
             selectedCategory: selectedCategory,
           );
         },
-        onError:
-            (_, __) => ProductError(errorMessage: "Error loading products"),
+        onError: (error, stackTrace) {
+          print('Firestore error: $error'); // Debug log
+          print('Stack trace: $stackTrace'); // Debug log
+
+          String errorMessage = "Error loading products";
+
+          // Handle specific Firebase errors
+          if (error.toString().contains('permission-denied')) {
+            errorMessage =
+                "Permission denied. Please check your authentication.";
+          } else if (error.toString().contains('unavailable')) {
+            errorMessage =
+                "Service unavailable. Please check your internet connection.";
+          } else if (error.toString().contains('not-found')) {
+            errorMessage = "Products collection not found.";
+          } else {
+            errorMessage = "Error loading products: ${error.toString()}";
+          }
+
+          return ProductError(errorMessage: errorMessage);
+        },
       );
     });
 

@@ -8,8 +8,8 @@ final class ProducInitial extends ProducState {}
 final class ProductLoading extends ProducState {}
 
 class ProductLoaded extends ProducState {
-  final List<FoodModel> allProducts;
-  final List<FoodModel> filteredProducts;
+  final List<Food> allProducts;
+  final List<Food> filteredProducts;
   final Category selectedCategory;
 
   ProductLoaded({

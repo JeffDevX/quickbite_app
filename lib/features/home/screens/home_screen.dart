@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quickbite_app/features/home/bloc/product/product_bloc.dart';
-import 'package:quickbite_app/features/home/models/food_model.dart';
+import 'package:quickbite_app/features/home/models/food.dart';
 import 'package:quickbite_app/features/home/widgets/food_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -126,11 +126,7 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final food = state.filteredProducts[index];
                           //final item = state.foods[index];
-                          return FoodWidget(
-                            foodImage: food.pictureUrl,
-                            foodName: food.name,
-                            foodPrice: food.price,
-                          );
+                          return FoodWidget(food: food);
                         },
                       );
                     } else if (state is ProductError) {

@@ -4,40 +4,43 @@
 
 import 'dart:convert';
 
-List<FoodModel> foodModelFromJson(String str) =>
-    List<FoodModel>.from(json.decode(str).map((x) => FoodModel.fromJson(x)));
+List<Food> foodModelFromJson(String str) =>
+    List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
 
-String foodModelToJson(List<FoodModel> data) =>
+String foodModelToJson(List<Food> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class FoodModel {
+class Food {
   bool available;
   Category category;
   String name;
   String pictureUrl;
   double price;
   int stock;
+  String description;
   String? type;
   List<Item>? items;
 
-  FoodModel({
+  Food({
     required this.available,
     required this.category,
     required this.name,
     required this.pictureUrl,
     required this.price,
     required this.stock,
+    required this.description,
     this.type,
     this.items,
   });
 
-  factory FoodModel.fromJson(Map<String, dynamic> json) => FoodModel(
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
     available: json["available"],
     category: categoryValues.map[json["category"]]!,
     name: json["name"],
     pictureUrl: json["pictureUrl"],
     price: json["price"]?.toDouble(),
     stock: json["stock"],
+    description: json["description"],
     type: json["type"],
     items:
         json["items"] == null
@@ -52,6 +55,7 @@ class FoodModel {
     "pictureUrl": pictureUrl,
     "price": price,
     "stock": stock,
+    "description": description,
     "type": type,
     "items":
         items == null ? [] : List<dynamic>.from(items!.map((x) => x.toJson())),
