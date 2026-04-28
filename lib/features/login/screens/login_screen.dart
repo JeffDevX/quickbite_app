@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:quickbite_app/features/login/auth/bloc/auth_bloc.dart';
+import 'package:quickbite_app/features/login/auth/bloc/auth_state.dart';
 import 'package:quickbite_app/features/login/bloc/login_bloc.dart';
+import 'package:quickbite_app/features/login/bloc/login_state.dart';
 import 'package:quickbite_app/features/login/widgets/app_logo.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -28,35 +31,47 @@ class LoginScreen extends StatelessWidget {
               ),
               Text('Comida deliciosa en un instante'),
               Form(
-                child: BlocListener<LoginBloc, LoginState>(
-                  listener: (context, state) {
-                    //If login is successful, navigate to home
-                    if (state.isSuccess) {
-                      context.go('/home');
-                    }
-                    //If login fails, show error message
-                    if (state.errorMessage != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(state.errorMessage!)),
-                      );
-                    }
-                  },
+                child: MultiBlocListener(
+                  listeners: [
+                    // Escuchamos errores del LoginBloc (ej: contraseña mal)
+                    BlocListener<LoginBloc, LoginState>(
+                      listener: (context, state) {
+                        if (state is LoginFailure) {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(state.error)));
+                        }
+                      },
+                    ),
+                    // Escuchamos al AuthBloc para la navegación (Reactividad)
+                    BlocListener<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        if (state is Authenticated) {
+                          if (state.role == 'admin') {
+                            context.go('/dashboard');
+                          } else {
+                            context.go('/home');
+                          }
+                        }
+                      },
+                    ),
+                  ],
                   child: Column(
                     children: [
                       TextFormField(
                         controller: emailController,
-                        onChanged: (value) {
-                          context.read<LoginBloc>().add(
-                            LoginEmailChanged(value),
-                          );
-                        },
+                        // onChanged: (value) {
+                        //   context.read<LoginBloc>().add(
+                        //     LoginEmailChanged(value),
+                        //   );
+                        // },
                         decoration: InputDecoration(label: Text('Email')),
                       ),
                       TextFormField(
-                        onChanged:
-                            (value) => context.read<LoginBloc>().add(
-                              LoginPasswordChanged(value),
-                            ),
+                        // onChanged:
+                        //     (value) => context.read<LoginBloc>().add(
+                        //       LoginPasswordChanged(value),
+                        //     ),
                         obscureText: true,
                         controller: passwordController,
                         decoration: InputDecoration(label: Text('Contraseña')),
@@ -81,12 +96,32 @@ class LoginScreen extends StatelessWidget {
                                         HexColor('FF5722'),
                                       ),
                                     ),
-                                    onPressed:
-                                        () => context.read<LoginBloc>().add(
-                                          LoginSubmitted(),
-                                        ),
+                                    onPressed: () {
+                                      final email = emailController.text;
+                                      final password = passwordController.text;
+
+                                      if (email.isNotEmpty &&
+                                          password.isNotEmpty) {
+                                        context.read<LoginBloc>().add(
+                                          LoginSubmitted(
+                                            email: email,
+                                            password: password,
+                                          ),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Por favor, completa los campos',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
                                     child:
-                                        state.isLoading
+                                        state is LoginLoading
                                             ? SizedBox(
                                               height: 15,
                                               width: 15,
