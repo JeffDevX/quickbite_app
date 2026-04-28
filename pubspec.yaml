@@ -31,8 +31,10 @@ dependencies:
   bloc: ^9.2.0
   cached_network_image: ^3.4.1
   cloud_firestore: ^6.1.2
+  cloud_functions: ^6.1.0
   cupertino_icons: ^1.0.8
-  firebase_auth: ^6.0.2
+  equatable: ^2.0.8
+  firebase_auth: ^6.4.0
   firebase_core: ^4.4.0
   flutter:
     sdk: flutter
