@@ -8,6 +8,8 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController firstName = TextEditingController();
+    TextEditingController lastName = TextEditingController();
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
 
@@ -25,7 +27,7 @@ class RegisterScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Crear cuenta',
+                'Registrarse',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               Row(
@@ -67,6 +69,24 @@ class RegisterScreen extends StatelessWidget {
                         TextFormField(
                           onChanged:
                               (value) => context.read<RegisterBloc>().add(
+                                RegisterFirstNameChanged(value),
+                              ),
+                          controller: firstName,
+                          decoration: InputDecoration(
+                            label: Text('First name'),
+                          ),
+                        ),
+                        TextFormField(
+                          onChanged:
+                              (value) => context.read<RegisterBloc>().add(
+                                RegisterLastNameChanged(value),
+                              ),
+                          controller: lastName,
+                          decoration: InputDecoration(label: Text('Last name')),
+                        ),
+                        TextFormField(
+                          onChanged:
+                              (value) => context.read<RegisterBloc>().add(
                                 RegisterEmailChanged(value),
                               ),
                           controller: email,
@@ -91,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                               child:
                                   state.isLoading
                                       ? CircularProgressIndicator()
-                                      : Text('Registrarse'),
+                                      : Text('Crear cuenta'),
                             );
                           },
                         ),
