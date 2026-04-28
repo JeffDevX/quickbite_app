@@ -1,40 +1,54 @@
-import 'dart:core';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickbite_app/core/repositories/auth_repository.dart';
+import 'package:quickbite_app/features/login/bloc/login_state.dart';
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
+// Eventos
+abstract class LoginEvent {}
 
-part 'login_event.dart';
-part 'login_state.dart';
+class LoginSubmitted extends LoginEvent {
+  final String email;
+  final String password;
+  LoginSubmitted({required this.email, required this.password});
+}
 
+// El Bloc usando tus estados abstractos
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(LoginState()) {
-    on<LoginEmailChanged>((event, emit) {
-      emit(state.copyWith(email: event.email, errorMessage: null));
+  final AuthRepository authRepository;
+
+  LoginBloc({required this.authRepository}) : super(LoginInitial()) {
+    on<LoginSubmitted>((event, emit) async {
+      emit(LoginLoading());
+
+      try {
+        await authRepository.signIn(
+          email: event.email,
+          password: event.password,
+        );
+
+        emit(LoginSuccess());
+      } on FirebaseAuthException catch (e) {
+        String userFriendlyMessage;
+
+        // Agrupamos los errores que revelan información sensible
+        if (e.code == 'user-not-found' ||
+            e.code == 'wrong-password' ||
+            e.code == 'invalid-credential') {
+          userFriendlyMessage = 'El correo o la contraseña son incorrectos.';
+        } else if (e.code == 'user-disabled') {
+          userFriendlyMessage =
+              'Esta cuenta ha sido deshabilitada por el administrador.';
+        } else if (e.code == 'network-request-failed') {
+          userFriendlyMessage = 'Error de conexión. Revisa tu internet.';
+        } else {
+          userFriendlyMessage =
+              'No se pudo iniciar sesión. Inténtalo más tarde.';
+        }
+
+        emit(LoginFailure(userFriendlyMessage));
+      } catch (e) {
+        emit(LoginFailure('Ocurrió un error inesperado.'));
+      }
     });
-
-    on<LoginPasswordChanged>((event, emit) {
-      emit(state.copyWith(password: event.password, errorMessage: null));
-    });
-
-    on<LoginSubmitted>(_onLoginSubmitted);
-  }
-
-  Future<void> _onLoginSubmitted(
-    LoginSubmitted event,
-    Emitter<LoginState> emit,
-  ) async {
-    if (!state.isValid) {
-      emit(state.copyWith(errorMessage: 'Por favor completa todos los campos'));
-      return;
-    }
-
-    emit(state.copyWith(isLoading: true));
-
-    try {
-      await Future.delayed(Duration(seconds: 2));
-      emit(state.copyWith(isLoading: false, isSuccess: true));
-    } catch (_) {
-      emit(state.copyWith(errorMessage: 'Error al iniar sesión'));
-    }
   }
 }
