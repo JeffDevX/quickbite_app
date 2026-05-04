@@ -1,6 +1,10 @@
 # QuickBite App
 
-Una aplicación móvil de delivery de comida desarrollada en Flutter, basada en una arquitectura distribuida y serverless utilizando Firebase como plataforma backend principal. El proyecto implementa principios modernos de desarrollo cloud-native, sincronización en tiempo real y microservicios mediante Cloud Functions.
+<p align="center">
+  <img src="assets/videos/quickbite_client_demo.gif" alt="QuickBite Demo" width="300"/>
+</p>
+
+Una aplicación móvil para realizar pedidos de comida directamente en el restaurante, desarrollada en Flutter con arquitectura BLoC, Firebase backend y autenticación de usuarios. El proyecto implementa principios modernos de desarrollo cloud-native, sincronización en tiempo real y microservicios mediante Cloud Functions.
 
 ---
 
@@ -26,22 +30,26 @@ QuickBite implementa una arquitectura distribuida basada en tecnologías Firebas
 ## Componentes principales
 
 ### Frontend
+
 - Flutter
 - Dart
 - Material Design
 
 ### Backend Serverless
+
 - Firebase Cloud Functions
 - Cloud Firestore
 - Firebase Authentication
 - Firebase Hosting
 
 ### Observabilidad y Monitoreo
+
 - Firebase Crashlytics
 - Cloud Logging
 - Cloud Monitoring
 
 ### Comunicación
+
 - Arquitectura basada en eventos
 - Sincronización en tiempo real
 - Microservicios desacoplados
@@ -123,6 +131,7 @@ QuickBite utiliza Firebase como plataforma principal para la infraestructura clo
 ## Firebase Authentication
 
 Se utiliza para:
+
 - Registro de usuarios
 - Inicio de sesión
 - Gestión de sesiones
@@ -136,6 +145,7 @@ Se utiliza para:
 Cloud Firestore actúa como la base de datos principal del sistema.
 
 Se utiliza para:
+
 - Gestión de productos
 - Persistencia de pedidos
 - Sincronización en tiempo real
@@ -149,6 +159,7 @@ Se utiliza para:
 Las Cloud Functions implementan la lógica backend desacoplada mediante microservicios serverless.
 
 Responsabilidades:
+
 - Procesamiento de pedidos
 - Validación de datos
 - Automatización de eventos
@@ -160,6 +171,7 @@ Responsabilidades:
 ## Firebase Hosting
 
 Utilizado para:
+
 - Despliegue de la aplicación Flutter Web
 - Distribución mediante CDN
 - Escalabilidad automática
@@ -169,6 +181,7 @@ Utilizado para:
 ## Firebase Crashlytics
 
 Crashlytics permite:
+
 - Captura automática de errores
 - Monitoreo de fallos críticos
 - Diagnóstico de excepciones
@@ -211,6 +224,7 @@ flutter pub get
 ## 1. Crear proyecto Firebase
 
 Desde:
+
 - Firebase Console
 - Google Cloud Console
 
@@ -219,6 +233,7 @@ Desde:
 ## 2. Configurar aplicaciones
 
 Agregar:
+
 - Android
 - iOS
 - Web
@@ -556,4 +571,4 @@ Docente de la asignatura **Tópicos Avanzados II**, de la **Universidad Tecnoló
 
 # 🍔 QuickBite
 
-Tu delivery de comida favorito, impulsado por tecnologías cloud-native y arquitectura serverless.
+Tu app de autoservicio de pedidos de comida favorito, impulsado por tecnologías cloud-native y arquitectura serverless.
