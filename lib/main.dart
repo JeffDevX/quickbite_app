@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +19,25 @@ void main() async {
 
   // 2. Inicializa Firebase usando tus opciones específicas
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  // --- CONFIGURACIÓN DE CRASHLYTICS ---
+
+  // 1. Forzar recolección en modo debug para tu prueba actual
+  if (kDebugMode) {
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  }
+
+  // 2. Capturar errores del framework de Flutter
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  // 3. Capturar errores asíncronos no controlados
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   runApp(
     MultiBlocProvider(
       providers: [
@@ -26,6 +49,7 @@ void main() async {
         ),
         BlocProvider(create: (context) => AuthBloc(AuthRepository())),
       ],
+
       child: MyApp(),
     ),
   );

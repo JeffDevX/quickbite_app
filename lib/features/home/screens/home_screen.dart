@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -36,6 +37,15 @@ class HomeScreen extends StatelessWidget {
 
               // 5. Botón flotante del carrito (Solo aparece si hay items)
               _buildCartFloatingButton(),
+
+              // 6. Boton para probar Crashlytics
+              ElevatedButton(
+                onPressed: () {
+                  FirebaseCrashlytics.instance.log("Probando tercer crash");
+                  FirebaseCrashlytics.instance.crash();
+                },
+                child: Text("Test Crash"),
+              ),
             ],
           ),
         ),
