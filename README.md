@@ -1,5 +1,9 @@
 # QuickBite App
 
+![Flutter](https://img.shields.io/badge/Flutter-3.7-blue)
+![Firebase](https://img.shields.io/badge/Firebase-Backend-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 <p align="center">
   <img src="assets/videos/quickbite_client_demo.gif" alt="QuickBite Demo" width="300"/>
 </p>
