@@ -1,45 +1,89 @@
 # QuickBite App
 
-Una aplicación móvil de delivery de comida desarrollada en Flutter con arquitectura BLoC, Firebase backend y autenticación de usuarios.
+Una aplicación móvil de delivery de comida desarrollada en Flutter, basada en una arquitectura distribuida y serverless utilizando Firebase como plataforma backend principal. El proyecto implementa principios modernos de desarrollo cloud-native, sincronización en tiempo real y microservicios mediante Cloud Functions.
 
-## 🚀 Características
+---
 
-- **🍔 Menú Interactivo**: Navegación por categorías de comida (Combos, Hamburguesas, Pizzas, Bebidas)
-- **👤 Autenticación de Usuarios**: Sistema de login y registro con Firebase Auth
-- **🛒 Carrito de Compras**: Gestión de productos seleccionados
-- **📱 Dashboard Admin**: Panel de administración para gestión de pedidos
-- **🔥 Tiempo Real**: Sincronización en tiempo real con Firestore
-- **📊 Reportes**: Visualización de estadísticas y métricas
-- **🎨 UI/UX Moderna**: Diseño responsivo con Material Design
+# 🚀 Características
 
-## 📱 Screenshots
+- 🍔 Menú interactivo con categorías dinámicas
+- 👤 Autenticación de usuarios mediante Firebase Authentication
+- 🛒 Carrito de compras en tiempo real
+- 📱 Dashboard administrativo
+- 🔥 Sincronización en tiempo real con Firestore
+- ☁️ Arquitectura serverless basada en Cloud Functions
+- 📊 Observabilidad mediante Firebase Crashlytics
+- 🔐 Seguridad mediante Firebase Security Rules
+- 🎨 UI/UX moderna usando Material Design
+- 📦 Escalabilidad automática cloud-native
 
-_(Agrega capturas de pantalla de la aplicación)_
+---
 
-## 🛠️ Stack Tecnológico
+# 🏗️ Arquitectura del Sistema
+
+QuickBite implementa una arquitectura distribuida basada en tecnologías Firebase y Google Cloud.
+
+## Componentes principales
 
 ### Frontend
+- Flutter
+- Dart
+- Material Design
 
-- **Flutter** - Framework de desarrollo multiplataforma
-- **Dart** - Lenguaje de programación
-- **Material Design** - Sistema de diseño UI
+### Backend Serverless
+- Firebase Cloud Functions
+- Cloud Firestore
+- Firebase Authentication
+- Firebase Hosting
 
-### Arquitectura
+### Observabilidad y Monitoreo
+- Firebase Crashlytics
+- Cloud Logging
+- Cloud Monitoring
 
-- **BLoC Pattern** - Gestión de estado
-- **GoRouter** - Navegación y routing
-- **Repository Pattern** - Capa de datos
+### Comunicación
+- Arquitectura basada en eventos
+- Sincronización en tiempo real
+- Microservicios desacoplados
 
-### Backend & Servicios
+---
 
-- **Firebase Auth** - Autenticación de usuarios
-- **Cloud Firestore** - Base de datos NoSQL
-- **Cloud Functions** - Backend serverless
-- **Firebase Crashlytics** - Reporte de errores
+# 📱 Screenshots
 
-## 📁 Estructura del Proyecto
+_(Agregar capturas reales de la aplicación aquí)_
 
-```
+---
+
+# 🛠️ Stack Tecnológico
+
+## Frontend
+
+- **Flutter** — Framework multiplataforma
+- **Dart** — Lenguaje de programación
+- **Material Design** — Sistema de diseño UI
+
+## Arquitectura
+
+- **BLoC Pattern** — Gestión de estado
+- **GoRouter** — Navegación declarativa
+- **Repository Pattern** — Separación de responsabilidades
+- **Arquitectura Serverless** — Backend desacoplado
+
+## Backend & Servicios Cloud
+
+- **Firebase Authentication** — Gestión de usuarios
+- **Cloud Firestore** — Base de datos NoSQL en tiempo real
+- **Cloud Functions** — Microservicios serverless
+- **Firebase Hosting** — Hosting web
+- **Firebase Crashlytics** — Reporte y monitoreo de errores
+- **Cloud Logging** — Registro de eventos
+- **Cloud Monitoring** — Métricas y monitoreo
+
+---
+
+# 📁 Estructura del Proyecto
+
+```plaintext
 lib/
 ├── core/                    # Configuración global y utilidades
 │   └── repositories/       # Repositorios principales
@@ -70,225 +114,446 @@ lib/
 └── main.dart             # Punto de entrada
 ```
 
-## 🚀 Instalación
+---
 
-### Prerrequisitos
+# 🔥 Integración con Firebase
 
-- Flutter SDK (versión 3.7.2 o superior)
+QuickBite utiliza Firebase como plataforma principal para la infraestructura cloud del sistema.
+
+## Firebase Authentication
+
+Se utiliza para:
+- Registro de usuarios
+- Inicio de sesión
+- Gestión de sesiones
+- Validación de credenciales
+- Control de acceso basado en roles
+
+---
+
+## Cloud Firestore
+
+Cloud Firestore actúa como la base de datos principal del sistema.
+
+Se utiliza para:
+- Gestión de productos
+- Persistencia de pedidos
+- Sincronización en tiempo real
+- Actualización automática de estados
+- Gestión de usuarios y roles
+
+---
+
+## Cloud Functions
+
+Las Cloud Functions implementan la lógica backend desacoplada mediante microservicios serverless.
+
+Responsabilidades:
+- Procesamiento de pedidos
+- Validación de datos
+- Automatización de eventos
+- Ejecución de lógica de negocio
+- Integración entre servicios
+
+---
+
+## Firebase Hosting
+
+Utilizado para:
+- Despliegue de la aplicación Flutter Web
+- Distribución mediante CDN
+- Escalabilidad automática
+
+---
+
+## Firebase Crashlytics
+
+Crashlytics permite:
+- Captura automática de errores
+- Monitoreo de fallos críticos
+- Diagnóstico de excepciones
+- Observabilidad del sistema
+- Análisis de estabilidad de la aplicación
+
+---
+
+# 🚀 Instalación
+
+## Prerrequisitos
+
+- Flutter SDK 3.7.2 o superior
 - Dart SDK
-- Android Studio / Xcode
-- Firebase project configurado
+- Android Studio / VSCode / Xcode
+- Firebase CLI
+- Proyecto Firebase configurado
 
-### Pasos
+---
 
-1. **Clonar el repositorio**
+# 📥 Clonar repositorio
 
-   ```bash
-   git clone <repository-url>
-   cd quickbite_app
-   ```
+```bash
+git clone <repository-url>
+cd quickbite_app
+```
 
-2. **Instalar dependencias**
+---
 
-   ```bash
-   flutter pub get
-   ```
+# 📦 Instalar dependencias
 
-3. **Configurar Firebase**
-   - Crear proyecto en Firebase Console
-   - Configurar Android/iOS apps
-   - Descargar archivos de configuración:
-     - Android: `google-services.json` → `android/app/`
-     - iOS: `GoogleService-Info.plist` → `ios/Runner/`
-   - Habilitar servicios: Auth, Firestore, Functions, Crashlytics
+```bash
+flutter pub get
+```
 
-4. **Configurar Firestore Rules**
+---
 
-   ```javascript
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /products/{document} {
-         allow read: if true;
-         allow write: if request.auth != null;
-       }
-       match /orders/{document} {
-         allow read, write: if request.auth != null;
-       }
-     }
-   }
-   ```
+# 🔥 Configurar Firebase
 
-5. **Ejecutar la aplicación**
-   ```bash
-   flutter run
-   ```
+## 1. Crear proyecto Firebase
 
-## 🔧 Configuración
+Desde:
+- Firebase Console
+- Google Cloud Console
 
-### Variables de Entorno
+---
 
-El proyecto utiliza configuración automática de Firebase a través de `firebase_options.dart`.
+## 2. Configurar aplicaciones
 
-### Assets
+Agregar:
+- Android
+- iOS
+- Web
 
-Las imágenes están ubicadas en `assets/images/` y configuradas en `pubspec.yaml`.
+---
 
-## 📦 Dependencias Principales
+## 3. Descargar archivos de configuración
 
-- `flutter_bloc: ^9.1.1` - Gestión de estado BLoC
-- `go_router: ^17.1.0` - Navegación declarativa
-- `firebase_auth: ^6.4.0` - Autenticación
-- `cloud_firestore: ^6.1.2` - Base de datos
-- `cloud_functions: ^6.1.0` - Funciones backend
-- `cached_network_image: ^3.4.1` - Caché de imágenes
-- `equatable: ^2.0.8` - Comparación de objetos
+### Android
 
-## 🏗️ Arquitectura
+```plaintext
+google-services.json
+```
 
-### BLoC Pattern
+Ubicar en:
 
-La aplicación sigue el patrón BLoC para la gestión de estado:
+```plaintext
+android/app/
+```
 
-- **Events**: Acciones del usuario (ej. `LoadProducts`, `AddToCart`)
-- **States**: Estados de la UI (ej. `ProductLoading`, `ProductLoaded`)
-- **BLoCs**: Conectan events con states
+---
 
-### Navegación
+### iOS
 
-- **GoRouter** para routing declarativo
-- **Guardias de autenticación** para rutas protegidas
-- **Redirección basada en roles** (admin/user)
+```plaintext
+GoogleService-Info.plist
+```
 
-### Repositorios
+Ubicar en:
 
-- **ProductsRepository**: Gestión de productos desde Firestore
-- **AuthRepository**: Manejo de autenticación
+```plaintext
+ios/Runner/
+```
 
-## 🔐 Autenticación y Roles
+---
 
-### Flujo de Autenticación
+# 🔧 Habilitar servicios Firebase
 
-1. Login/Registro → Firebase Auth
-2. Verificación de email
-3. Obtención de rol desde Firestore
-4. Redirección según rol:
-   - `admin` → `/dashboard`
-   - `user` → `/home`
+Activar:
 
-### Roles de Usuario
+- Firebase Authentication
+- Cloud Firestore
+- Cloud Functions
+- Firebase Hosting
+- Firebase Crashlytics
 
-- **Admin**: Acceso completo al dashboard
-- **User**: Acceso limitado al menú y carrito
+---
 
-## 📊 Funcionalidades Principales
+# 🔐 Firestore Security Rules
 
-### Home Screen
+```javascript
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /products/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    match /orders/{document} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
+
+---
+
+# ▶️ Ejecutar aplicación
+
+```bash
+flutter run
+```
+
+---
+
+# 📦 Dependencias Principales
+
+```yaml
+flutter_bloc:
+go_router:
+firebase_auth:
+cloud_firestore:
+cloud_functions:
+firebase_crashlytics:
+cached_network_image:
+equatable:
+```
+
+---
+
+# 🏗️ Arquitectura
+
+## BLoC Pattern
+
+La aplicación implementa el patrón BLoC para desacoplar la lógica de negocio de la interfaz de usuario.
+
+### Componentes
+
+- **Events** → Acciones del usuario
+- **States** → Estados de interfaz
+- **BLoCs** → Gestión de lógica y flujo de datos
+
+---
+
+## Navegación
+
+Se utiliza GoRouter para:
+
+- Routing declarativo
+- Protección de rutas
+- Redirección basada en roles
+
+---
+
+# ☁️ Arquitectura Serverless
+
+QuickBite adopta un enfoque serverless mediante Firebase Cloud Functions.
+
+## Beneficios
+
+- Escalabilidad automática
+- Menor complejidad operativa
+- Alta disponibilidad
+- Infraestructura administrada
+- Despliegue simplificado
+
+---
+
+# 📊 Funcionalidades Principales
+
+## 🏠 Home Screen
 
 - Búsqueda de productos
 - Filtrado por categorías
-- Grid de productos con imágenes cacheadas
+- Visualización dinámica
 
-### Carrito de Compras
+---
 
-- Agregar/eliminar productos
+## 🛒 Carrito de Compras
+
+- Gestión de productos
 - Actualización de cantidades
-- Cálculo de totales
+- Cálculo automático de totales
 
-### Dashboard Admin
+---
+
+## 📱 Dashboard Administrativo
 
 - Gestión de pedidos
-- Estadísticas de ventas
-- Gestión de productos
+- Seguimiento de estados
+- Estadísticas operativas
 
-### Perfil de Usuario
+---
+
+## 👤 Perfil de Usuario
 
 - Información personal
 - Historial de pedidos
-- Configuración
+- Configuración de cuenta
 
-## 🧪 Testing
+---
+
+# 🧪 Testing
+
+## Ejecutar tests
 
 ```bash
-# Ejecutar tests unitarios
 flutter test
+```
 
-# Ejecutar tests con cobertura
+---
+
+## Cobertura
+
+```bash
 flutter test --coverage
 ```
 
-## 📱 Build & Deploy
+---
 
-### Android
+# 📱 Build & Deploy
+
+## Android
 
 ```bash
 flutter build apk --release
 flutter build appbundle --release
 ```
 
-### iOS
+---
+
+## iOS
 
 ```bash
 flutter build ios --release
 ```
 
-### Web
+---
+
+## Web
 
 ```bash
 flutter build web --release
 ```
 
-## 🔥 Firebase Functions
+---
 
-El proyecto incluye funciones backend en la carpeta `functions/`:
+# 🔥 Firebase Functions
+
+Funciones implementadas:
 
 - Procesamiento de pedidos
-- Envío de notificaciones
-- Generación de reportes
+- Automatización de eventos
+- Gestión de estados
+- Validación de información
+- Integración backend
 
-Deploy de funciones:
+---
+
+## Deploy Functions
 
 ```bash
 cd functions
 npm run deploy
 ```
 
-## 🐛 Debugging y Logs
+---
 
-### Crashlytics
+# 🐛 Observabilidad y Monitoreo
 
-La aplicación está configurada para enviar errores a Firebase Crashlytics automáticamente.
+## Firebase Crashlytics
 
-### Logs de Debug
+QuickBite implementa observabilidad mediante Firebase Crashlytics para:
 
-- Logs de autenticación en consola
-- Errores de Firestore detallados
-- Estado de BLoC en desarrollo
-
-## 🤝 Contribución
-
-1. Fork del proyecto
-2. Crear feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit de cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push al branch (`git push origin feature/AmazingFeature`)
-5. Abrir Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo licencia MIT - ver archivo [LICENSE](LICENSE) para detalles.
-
-## 📞 Contacto
-
-- **Desarrollador**: Jeffrey DevX
-- **Email**: [tu-email@example.com]
-- **Proyecto**: QuickBite App
-
-## 🙏 Agradecimientos
-
-- Equipo Flutter por el framework increíble
-- Firebase por los servicios backend
-- Comunidad de desarrollo Flutter
+- Captura de excepciones
+- Reporte automático de fallos
+- Diagnóstico de errores críticos
+- Monitoreo de estabilidad
 
 ---
 
-**QuickBite** - Tu delivery de comida favorito, al alcance de tu mano. 🍔📱
+## Cloud Logging
+
+Utilizado para:
+
+- Logs de Cloud Functions
+- Registro de eventos backend
+- Seguimiento de flujos distribuidos
+
+---
+
+## Cloud Monitoring
+
+Permite:
+
+- Visualización de métricas
+- Monitoreo de rendimiento
+- Seguimiento de invocaciones
+- Observabilidad del backend serverless
+
+---
+
+# 🔐 Seguridad
+
+El sistema implementa:
+
+- Firebase Authentication
+- Firestore Security Rules
+- Protección de rutas
+- Gestión de roles
+- Validación de acceso
+
+---
+
+# 🤝 Contribución
+
+1. Fork del proyecto
+
+2. Crear branch
+
+```bash
+git checkout -b feature/AmazingFeature
+```
+
+3. Commit
+
+```bash
+git commit -m 'Add some AmazingFeature'
+```
+
+4. Push
+
+```bash
+git push origin feature/AmazingFeature
+```
+
+5. Abrir Pull Request
+
+---
+
+# 📄 Licencia
+
+Proyecto bajo licencia MIT.
+
+---
+
+# 📞 Contacto
+
+- **Desarrollador:** Jeffrey Aguila (JeffDevX)
+- - **Email**: [jeffdevx.tech@gmail.com]
+- **Proyecto:** QuickBite App
+
+---
+
+# 🙏 Agradecimientos
+
+Agradecimiento especial a mis compañeros de la Universidad Tecnológica de Panamá:
+
+- **Climaco Cardenas**
+- **Emily Ortega**
+- **Jose Sanchez**
+
+por su colaboración, apoyo y trabajo en equipo durante el desarrollo del proyecto QuickBite.
+
+Asimismo, se extiende un reconocimiento especial al profesor:
+
+- **Huriviades Calderon**
+
+Docente de la asignatura **Tópicos Avanzados II**, de la **Universidad Tecnológica de Panamá** quien contribuyó significativamente mediante la enseñanza detallada de los conceptos, metodologías y fundamentos técnicos aplicados durante el desarrollo de esta solución basada en arquitecturas distribuidas, servicios cloud y tecnologías serverless.
+
+---
+
+# 🍔 QuickBite
+
+Tu delivery de comida favorito, impulsado por tecnologías cloud-native y arquitectura serverless.
