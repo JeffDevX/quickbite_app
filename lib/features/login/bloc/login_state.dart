@@ -1,35 +1,14 @@
-part of 'login_bloc.dart';
+abstract class LoginState {}
 
-class LoginState {
-  final String password;
-  final String email;
-  final bool isLoading;
-  final bool isSuccess;
-  final String? errorMessage;
+class LoginInitial extends LoginState {}
 
-  const LoginState({
-    this.email = '',
-    this.password = '',
-    this.isLoading = false,
-    this.isSuccess = false,
-    this.errorMessage,
-  });
+class LoginLoading extends LoginState {}
 
-  bool get isValid => email.isNotEmpty && password.isNotEmpty;
+class LoginSuccess extends LoginState {
+  LoginSuccess();
+}
 
-  LoginState copyWith({
-    String? email,
-    String? password,
-    bool? isLoading,
-    bool? isSuccess,
-    String? errorMessage,
-  }) {
-    return LoginState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      isLoading: isLoading ?? this.isLoading,
-      isSuccess: isSuccess ?? this.isSuccess,
-      errorMessage: errorMessage ?? this.errorMessage,
-    );
-  }
+class LoginFailure extends LoginState {
+  final String error;
+  LoginFailure(this.error);
 }

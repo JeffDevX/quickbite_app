@@ -1,27 +1,25 @@
-// To parse this JSON data, do
-//
-//     final foodModel = foodModelFromJson(jsonString);
-
 import 'dart:convert';
+import 'package:equatable/equatable.dart';
 
+// Funciones de ayuda para JSON
 List<Food> foodModelFromJson(String str) =>
     List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
 
 String foodModelToJson(List<Food> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Food {
-  bool available;
-  Category category;
-  String name;
-  String pictureUrl;
-  double price;
-  int stock;
-  String description;
-  String? type;
-  List<Item>? items;
+class Food extends Equatable {
+  final bool available;
+  final Category category;
+  final String name;
+  final String pictureUrl;
+  final double price;
+  final int stock;
+  final String description;
+  final String? type;
+  final List<Item>? items;
 
-  Food({
+  const Food({
     required this.available,
     required this.category,
     required this.name,
@@ -33,20 +31,27 @@ class Food {
     this.items,
   });
 
-  factory Food.fromJson(Map<String, dynamic> json) => Food(
-    available: json["available"],
-    category: categoryValues.map[json["category"]]!,
-    name: json["name"],
-    pictureUrl: json["pictureUrl"],
-    price: json["price"]?.toDouble(),
-    stock: json["stock"],
-    description: json["description"],
-    type: json["type"],
-    items:
-        json["items"] == null
-            ? []
-            : List<Item>.from(json["items"]!.map((x) => Item.fromJson(x))),
-  );
+  factory Food.fromJson(Map<dynamic, dynamic> json) {
+    // Limpiamos el mapa principal
+    final data = Map<String, dynamic>.from(json);
+
+    return Food(
+      available: data["available"] ?? false,
+      category: categoryValues.map[data["category"]] ?? Category.combos,
+      name: data["name"] ?? '',
+      pictureUrl: data["pictureUrl"] ?? '',
+      price: (data["price"] ?? 0).toDouble(),
+      stock: data["stock"] ?? 0,
+      description: data["description"] ?? '',
+      type: data["type"],
+      items:
+          data["items"] == null
+              ? []
+              : (data["items"] as List)
+                  .map((x) => Item.fromJson(x as Map))
+                  .toList(),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
     "available": available,
@@ -60,6 +65,20 @@ class Food {
     "items":
         items == null ? [] : List<dynamic>.from(items!.map((x) => x.toJson())),
   };
+
+  // Esto permite que el Bloc compare si dos objetos Food son iguales por su contenido
+  @override
+  List<Object?> get props => [
+    available,
+    category,
+    name,
+    pictureUrl,
+    price,
+    stock,
+    description,
+    type,
+    items,
+  ];
 }
 
 enum Category {
@@ -79,19 +98,28 @@ final categoryValues = EnumValues({
   "Pizzas": Category.pizzas,
 });
 
-class Item {
-  String productName;
-  int quantity;
+class Item extends Equatable {
+  final String productName;
+  final int quantity;
 
-  Item({required this.productName, required this.quantity});
+  const Item({required this.productName, required this.quantity});
 
-  factory Item.fromJson(Map<String, dynamic> json) =>
-      Item(productName: json["productName"], quantity: json["quantity"]);
+  factory Item.fromJson(Map<dynamic, dynamic> json) {
+    // Convertimos a Map<String, dynamic> internamente
+    final data = Map<String, dynamic>.from(json);
+    return Item(
+      productName: data["productName"] ?? '',
+      quantity: data["quantity"] ?? 0,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
     "productName": productName,
     "quantity": quantity,
   };
+
+  @override
+  List<Object?> get props => [productName, quantity];
 }
 
 class EnumValues<T> {
