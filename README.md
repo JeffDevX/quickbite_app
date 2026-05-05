@@ -2,6 +2,7 @@
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.7-blue)
 ![Firebase](https://img.shields.io/badge/Firebase-Backend-orange)
+![BLoC](https://img.shields.io/badge/architecture-BLoC-purple)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 <table align="center">
