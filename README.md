@@ -4,13 +4,10 @@
 ![Firebase](https://img.shields.io/badge/Firebase-Backend-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-<table align="center">
-  <tr>
-    <td><img src="assets/videos/quickbite_client_demo.gif" width="300"/></td>
-    <td width="20"></td>
-    <td><img src="assets/videos/quickbite_admin_demo.gif" width="300"/></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/videos/quickbite_client_demo.gif" width="300" style="margin-right: 10px;"/>
+  <img src="assets/videos/quickbite_admin_demo.gif" width="300" style="margin-left: 10px;"/>
+</p>
 
 Una aplicación móvil para realizar pedidos de comida directamente en el restaurante, desarrollada en Flutter con arquitectura BLoC, Firebase backend y autenticación de usuarios. El proyecto implementa principios modernos de desarrollo cloud-native, sincronización en tiempo real y microservicios mediante Cloud Functions.
 
